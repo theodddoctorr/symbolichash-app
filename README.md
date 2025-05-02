@@ -1,19 +1,23 @@
-# 🎈 Blank app template
+# SymbolHash Encoder/Decoder
 
-A simple Streamlit app template for you to modify!
+**SymbolHash** is a reversible symbolic cipher created by Jason. It transforms each letter into a geometric or symbolic representation using quadrant logic, dot states, and binary anchors. ([@theodddoctorr](https://huggingface.co/theodddoctorr)).
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+It encodes text using quadrant-based geometry, dot-state binary mutation, and visually traceable symbolic anchors.
 
-### How to run it on your own machine
+---
 
-1. Install the requirements
 
-   ```
-   $ pip install -r requirements.txt
-   ```
+[![License: Circle of Fifths](https://img.shields.io/badge/license-Circle_of_Fifths-blueviolet.svg)](./LICENSE)
 
-2. Run the app
 
-   ```
-   $ streamlit run streamlit_app.py
-   ```
+## License
+This project is licensed under the **Circle of Fifths License v1.0**.
+
+- Free for personal, educational, and non-commercial use
+- Requires attribution
+- Commercial use must be licensed or revenue-shared
+- Symbolic structure must not be distorted or erased
+
+**[Read the full license »](./LICENSE)**
+
+For permission or inquiries, contact: **theodddoctorr@protonmail.com**
