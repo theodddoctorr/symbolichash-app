@@ -1,6 +1,6 @@
 import streamlit as st
 
-Final SymbolHash mapping
+# Final SymbolHash mapping
 
 def get_cipher(): return { 'A': 'V', 'B': '>', 'C': '<', 'D': '∧', 'E': '⅃', 'F': '⊔', 'G': 'L', 'H': ']', 'I': '□', 'J': '[', 'K': '⎾', 'L': '⊓', 'M': '┌', 'N': '•V', 'O': '•>', 'P': '•<', 'Q': '•∧', 'R': '•⅃', 'S': '•⊔', 'T': '•L', 'U': '•]', 'V': '•□', 'W': '•[', 'X': '•⎾', 'Y': '•⊓', 'Z': '•┌' }
 
