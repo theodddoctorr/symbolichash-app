@@ -1,6 +1,6 @@
 import streamlit as st
 
-# Final SymbolHash mapping
+# Correct SymbolHash cipher (Unicode-safe)
 def get_cipher():
     return {
         'A': 'V',    'B': '>',    'C': '<',    'D': '∧',
@@ -18,27 +18,48 @@ def encode_symbolhash(word):
 def decode_symbolhash(encoded_str):
     cipher = get_cipher()
     reverse_cipher = {v: k for k, v in cipher.items()}
-    return ''.join(reverse_cipher.get(sym, '?') for sym in encoded_str.split())
+    output = []
 
-# Streamlit UI
-st.set_page_config(page_title="SymbolHash Encoder/Decoder", layout="centered")
+    for sym in encoded_str.split():
+        if sym == '_':
+            output.append(' ')
+        else:
+            output.append(reverse_cipher.get(sym, '?'))
+
+    return ''.join(output)
+
+st.set_page_config(page_title="SymbolHash", layout="centered")
 st.title("SymbolHash Encoder/Decoder")
 
 st.markdown("""
-**SymbolHash** is a reversible symbolic cipher created by Jason. It transforms each letter into a geometric or symbolic representation using quadrant logic, dot states, and binary anchors.
-
-Try encoding any word below—or decode an existing SymbolHash symbol string.
+**SymbolHash** is a reversible symbolic encoding system using quadrant geometry and dot-state logic.  
+Designed for symbolic language, mathematical resonance mapping, and perceptual compression.
 """)
 
-option = st.radio("Choose mode:", ("Encode", "Decode"))
+if "history" not in st.session_state:
+    st.session_state.history = []
 
-if option == "Encode":
-    input_text = st.text_input("Enter text to encode:")
-    if input_text:
-        encoded = encode_symbolhash(input_text)
+mode = st.radio("Choose mode:", ["Encode", "Decode"])
+
+if mode == "Encode":
+    text = st.text_input("Enter text to encode:")
+    if text:
+        encoded = encode_symbolhash(text)
         st.text_area("Encoded Output:", encoded, height=100)
+        st.code(encoded, language="plaintext")
+        st.download_button("Download as .txt", data=encoded, file_name="symbolhash.txt")
+        st.session_state.history.insert(0, f"Encoded: {text} → {encoded}")
+
 else:
-    encoded_input = st.text_input("Enter space-separated symbols to decode:")
+    encoded_input = st.text_input("Paste symbols to decode (space-separated, use `_` for spaces):")
     if encoded_input:
         decoded = decode_symbolhash(encoded_input)
         st.text_area("Decoded Output:", decoded, height=100)
+        st.code(decoded, language="plaintext")
+        st.session_state.history.insert(0, f"Decoded: {encoded_input} → {decoded}")
+
+# Show history
+if st.session_state.history:
+    st.markdown("### Recent Activity:")
+    for item in st.session_state.history[:5]:
+        st.write(item)
